@@ -1,0 +1,335 @@
+/* --------- الأساسيات & الثيم --------- */
+:root {
+  --bg: #0f1220;
+  --surface: #171a2b;
+  --elev: #1e2238;
+  --text: #e9ecf1;
+  --muted: #b7bfd1;
+  --primary: #38bdf8;
+  --accent: #facc15;
+  --danger: #ff6b6b;
+  --ok: #4cd6a8;
+  --ring: rgba(56,189,248,.45);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --space: 16px;
+  --maxw: 1100px;
+  --font: system-ui, -apple-system, "Segoe UI", "Noto Kufi Arabic", "Noto Sans Arabic", "Tahoma", "Arial", sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --elev: #f2f4f8;
+    --text: #0e1320;
+    --muted: #667085;
+    --shadow: 0 10px 28px rgba(16,24,40,.08);
+    --ring: rgba(56,189,248,.25);
+  }
+}
+
+/* --------- اتجاه عربي --------- */
+html { direction: rtl; }
+* { box-sizing: border-box; }
+html,body { height:100%; }
+body {
+  margin:0;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(56,189,248,.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(250,204,21,.10), transparent 60%),
+    var(--bg);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------- الحاوية العامة --------- */
+main, header > nav, header > h1, footer { width: 100%; }
+main { max-width: var(--maxw); margin: 24px auto; padding: 0 20px 60px; }
+section { margin-block: 28px; }
+
+/* --------- الهيدر & النافبار --------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+header h1 {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 14px 20px 8px;
+  font-size: 24px;
+  font-weight: 800;
+}
+header h1 a { color: #fff; text-decoration: none; }
+nav { display: flex; justify-content: center; }
+nav ul {
+  max-width: var(--maxw);
+  width:100%;
+  margin: 0 auto;
+  padding: 10px 12px 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+nav a {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  transition: all .2s ease;
+}
+nav a:hover { background: rgba(255,255,255,.2); }
+
+/* --------- العناوين --------- */
+h2 { font-size: clamp(22px, 2.2vw, 30px); margin: 8px 0 10px; }
+h3 { font-size: clamp(18px, 1.8vw, 22px); margin: 6px 0 8px; }
+
+/* --------- الأزرار --------- */
+.button, button, [type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap:8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #071018;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform .06s ease, filter .2s ease;
+}
+.button:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+/* --------- البطاقات / الشبكات --------- */
+/* #featured-experiences > div,
+#new-arrivals > div,
+#all-gear > div,
+#experiences-list > div {
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+} */
+article {
+  background: linear-gradient(180deg, var(--surface), var(--elev));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+article:hover { transform: translateY(-3px); }
+article figure { margin:0 0 10px;
+  border-radius: var(--radius-sm); overflow: hidden; }
+article img { width:100%; height:200px; object-fit: cover; }
+
+/* --------- هيرو --------- */
+#hero {
+  position: relative;
+  height: 60vh;
+  margin: 20px auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+#hero video, #hero img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+#hero::after {
+  content: none;
+}
+#hero article {
+  position: static;
+  color: var(--text);
+  background: none;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 50%;
+  transform: none;
+  text-align: right;
+}
+/* --------- النماذج --------- */
+form {
+  background: linear-gradient(180deg, var(--surface), var(--elev));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  max-width: 720px;
+}
+label { display:block; margin: 8px 4px 6px; font-size: 14px; color: var(--muted); }
+input, select, textarea {
+  width:100%;
+  padding: 12px 14px;
+  background: #c3bce0;
+  color: var(--text);
+  border-radius: 10px;
+  border:1px solid rgba(255,255,255,.12);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* --------- الجداول --------- */
+table {
+  height:100%;
+  border-collapse: collapse;
+  background: linear-gradient(180deg, var(--surface), var(--elev));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+}
+thead th {
+  text-align: right;
+  font-weight: 800;
+  padding: 14px 16px;
+  background: var(--primary);
+  color: #fff;
+}
+tbody td, tfoot td {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  color: var(--muted);
+}
+tfoot td {
+  font-weight: 800;
+  color: var(--accent);
+  background: rgba(255,255,255,.03);
+}
+
+/* --------- الفوتر --------- */
+footer {
+  border-top: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(6px);
+  background: var(--primary);
+  padding: 22px 20px 40px;
+  margin-top: 60px;
+  text-align:center;
+  color:#fff;
+}
+footer a { color: var(--accent); text-decoration:none; }
+footer a:hover { text-decoration: underline; }
+
+/* --------- بطاقات إشعار/سعر --------- */
+.badge {
+  display:inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(56,189,248,.12);
+  border:1px solid rgba(56,189,248,.35);
+  color: var(--primary);
+  font-size: 12px;
+}
+.price { font-weight: 800; font-size: 18px; color: var(--accent); }
+
+/* --------- تجاوبية --------- */
+#featured-experiences > div,
+#new-arrivals > div,
+#all-gear > div {
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+#featured-experiences > div,
+#new-arrivals > div,
+#all-gear > div {
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+#experiences-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+  align-items: start;
+}
+
+#featured-experiences article,
+#new-arrivals article,
+#all-gear article,
+#experiences-list article {
+  display: block;
+}
+
+
+
+article {
+  background: linear-gradient(180deg, var(--surface), var(--elev));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+
+
+article figure { margin:0 0 10px; border-radius: var(--radius-sm); overflow: hidden; }
+article img { width:100%; height: 500px; object-fit: cover; display:block; }
+
+#experiences-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); 
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  #hero { height: 40vh; }
+  #featured-experiences > div,
+  #new-arrivals > div,
+  #all-gear > div,
+  #experiences-list > div { grid-template-columns: 1fr 1fr; }
+}
+
+
+
+@media (max-width: 640px) {
+
+  nav ul { gap:6px; }
+  nav a { padding: 8px 12px; }
+  article { padding: 14px; }
+  .button { width: 100%; }
+  #featured-experiences > div,
+  #new-arrivals > div,
+  #all-gear > div,
+  #experiences-list > div { grid-template-columns: 1fr; }
+
+  #featured-experiences > div,
+#new-arrivals > div,
+#all-gear > div {
+
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+#hero{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  height: 100%;
+}
+ 
+}
+
